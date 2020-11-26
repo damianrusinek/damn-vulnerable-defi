@@ -14,7 +14,7 @@ Share your solutions, comments, feedback and more in Twitter with [#DamnVulnerab
 
 ## Write-ups and lessons learned (added by @drdr_zz)
 
-This is a fork of the original repo, where I present the write-ups and lessons learned from the vulnerable contracts. Each challenge has a write-up (links below), an exploit (in the testcase file) and some have attacker contracts (in [this directory](write-ups/Intro.md)). 
+This is a fork of the original repo, where I present the write-ups and lessons learned from the vulnerable contracts. Each challenge has a write-up (links below), an exploit (in the testcase file) and some have attacker contracts (in [this directory](contracts/attacker-contracts)). 
 
 Here is the list of write-ups for all challenges:
 
@@ -33,7 +33,7 @@ I have added new category to [Smart Contracts Security Verification](https://git
 
 It contains the security requirements specific to the mechanisms used by the #DeFi applications. 
 
-Check out the list of [new requirements](...)!
+Check out the list of **new requirements**!
 
 ## Disclaimer
 
